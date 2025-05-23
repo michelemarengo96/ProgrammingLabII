@@ -17,3 +17,9 @@ print(e)
 
 f=np.zeros_like(a,dtype="float")
 print(f)
+
+g=np.arange(0.5,0.8,0.1)
+print(g)
+
+zeros=np.zeros(6,dtype="int")
+print(zeros)
