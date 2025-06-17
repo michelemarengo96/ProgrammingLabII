@@ -1,25 +1,30 @@
 import numpy as np
+import random
 
-a=np.array([1,2,3])
-print(a)
 
-b=np.arange(6)
-print(b)
+affitti=np.array([720,980,650,1200], dtype="float64")
 
-c=np.arange(1,6)
-print(c)
+somma_iniziale=np.sum(affitti)
 
-d=np.arange(1,8,3)
-print(d)
+indice_1200=np.where(affitti==1200)[0][0]
 
-e=np.linspace(0,0.5,20)
-print(e)
 
-f=np.zeros_like(a,dtype="float")
-print(f)
+affitti[indice_1200]*=1.12
+np.isclose(affitti[indice_1200], 1344.0)
 
-g=np.arange(0.5,0.8,0.1)
-print(g)
+somma_post_aumento=np.sum(affitti)
 
-zeros=np.zeros(6,dtype="int")
-print(zeros)
+valore_1200=affitti[indice_1200]
+
+
+indice_650=np.where(affitti==650)[0][0]
+
+affitti[indice_650]=affitti[indice_650]-affitti[indice_650]/10
+
+valore_650=affitti[indice_650]
+
+affitti=np.where((~np.isclose(affitti, valore_1200)) & (~np.isclose(affitti,valore_650)), affitti*1.05, affitti)
+
+
+differenza=somma_post_aumento-somma_iniziale
+print(differenza)
