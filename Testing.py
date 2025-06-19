@@ -1,5 +1,5 @@
 import numpy as np
-import random
+import pandas as pd
 
 
 affitti=np.array([720,980,650,1200], dtype="float64")
@@ -27,4 +27,17 @@ affitti=np.where((~np.isclose(affitti, valore_1200)) & (~np.isclose(affitti,valo
 
 
 differenza=somma_post_aumento-somma_iniziale
-print(differenza)
+
+
+data = [10, 20, 30, 40, 50]
+series = pd.Series(data, index=['a', 'b', 'c', 'd', 'e'])
+data = {
+    'job_title': ['Data Analyst', 'Data Scientist', 'Data Engineer'],
+    'location': ['Italy', 'USA', 'Germany'],
+    'salary': [40000, 80000, 70000],
+    'date_posted': ['2024-12-01', '2024-11-15', '2024-12-10']  # formato YYYY-MM-DD
+}
+
+df = pd.read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/alcohol-consumption/drinks.csv")
+
+print(df.sort_values(by="beer_servings",ascending=False))
