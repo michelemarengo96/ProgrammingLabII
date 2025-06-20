@@ -19,5 +19,6 @@ test=df[df.duplicated(subset=['Age'])]
 
 media_classe=df.groupby('Pclass')['Age'].mean()
 
+df['Age']
 print(media_classe)
 
