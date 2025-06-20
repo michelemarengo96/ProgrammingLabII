@@ -59,7 +59,7 @@ più_100=df[df['Fare'] > 100].sort_values(by='Fare',ascending=False)
 
 plt.figure(figsize=(5,5))
 plt.bar(più_100['Name'].head(10), più_100['Fare'].head(10), color='red')
-
+plt.show()
 df_last=df[df['Age'].notna() & df['Fare'].notna()]
 
 df_last.plot(y='Age',x='Fare',kind="line")
