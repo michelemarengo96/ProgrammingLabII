@@ -1,0 +1,19 @@
+import numpy as np
+
+
+def walkers(N,n):
+
+    matrice_vuota=np.zeros([N,n+1])
+
+    matrice_random=np.random.choice([-1,1],size=(N,n))
+
+    matrice_vuota[:,1:]=np.cumsum(matrice_random, axis=1)
+
+    media=np.mean(matrice_vuota,axis=0)
+    dev=np.std(matrice_vuota,axis=0)
+    return media,dev
+
+
+test=walkers(2,3)
+
+print(test)
