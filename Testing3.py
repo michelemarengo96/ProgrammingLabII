@@ -16,7 +16,7 @@ def fit_line(x,y):
 
    a,b=fit
 
-   pred=lineare(x,*fit)
+   
    
    stringa= f'La stringa è: {float(a)} * x + {float(b)}'
    return float(a),float(b),stringa
