@@ -2,26 +2,31 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
+import scipy as sp
 
-df=sb.load_dataset("penguins")
+x = np.linspace(0, 10, 100)
+y = 3 * x + 2 + np.random.normal(0, 1, 100)
 
-righecolonne=df.shape
 
-mancanti=df.isna().sum()
+def lineare(x,a,b):
 
-moda_sex=df.sex.mode()[0]
+    return x*a+b
 
-df['sex']=df['sex'].fillna(moda_sex)
+def fit_line(x,y):
 
-df=df.dropna(subset=['body_mass_g'])
+    fit,_=sp.optimize.curve_fit(lineare,x,y)
+    pred=lineare(x,*fit)
 
-duplicati=df.duplicated()
+    a,b=fit
 
-media_massa_species=df.groupby('species')['body_mass_g'].mean()
+    stringa=f'y={a}. * x + {b}'
+    return a,b,stringa
 
-print(media_massa_species)
+a,b,stringa= fit_line(x,y)
+print(stringa)
 
-df['body_mass_g']=df.apply(lambda x: media_massa_species[x['species']] if pd.isna(x['body_mass_g']) else x['body_mass_g'],axis=1)
+y_pred=lineare(x,a,b)
 
-sb.violinplot(data=df, x='species', y='body_mass_g',hue='sex')
+plt.scatter(x,y)
+plt.plot(x,y_pred,'r-')
 plt.show()
